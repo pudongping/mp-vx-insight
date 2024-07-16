@@ -1,0 +1,124 @@
+body {
+    width: 360px;
+    padding: 8px;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4; /* 轻灰色背景 */
+    font-size: 14px;
+}
+
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 2px;
+    background-color: #fff;
+    border-radius: 6px;
+    /*box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);*/
+}
+
+.articleItem {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.title, .author, .description {
+    /*margin-bottom: 10px;*/
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.label {
+    margin-right: 10px;
+    font-weight: bold;
+    color: #17233d;
+}
+
+.content {
+    color: #515a6e;
+    word-wrap: break-word; /* 自动换行 */
+}
+
+.coverImgContainer {
+    margin: 20px 0 20px 0;
+}
+
+.coverImgContainer img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+button {
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#noticeTitle {
+    background-color: #19be6b;
+    margin-bottom: 16px;
+}
+
+#noticeTitle:hover {
+    background-color: #1b9859;
+}
+
+.buttonContainer {
+    display: flex;
+    margin-top: 10px;
+}
+
+.buttonContainer button {
+    margin-right: 10px;
+}
+
+.otherBtn {
+    width: 100%;
+    border-top: 1px solid #e8eaec;
+    padding-top: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.footer {
+    margin-top: 20px;
+    width: 100%;
+    font-size: 12px;
+    text-align: center;
+    border-top: 1px solid #e8eaec;
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.footer #sponsorLink {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #383E46;
+    border-color: #78838F;
+    border-radius: 5px;
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.footer #sponsorLink:hover {
+    background-color: #993366;
+}

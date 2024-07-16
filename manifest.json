@@ -1,0 +1,43 @@
+{
+  "name": "__MSG_extensionName__",
+  "description": "__MSG_extensionDesc__",
+  "version": "1.0",
+  "manifest_version": 3,
+  "homepage_url": "https://github.com/pudongping/mp-vx-insight",
+  "default_locale": "zh_CN",
+  "icons": {
+    "48": "icon128.png"
+  },
+  "action": {
+    "default_icon": {
+      "16": "icon128.png",
+      "32": "icon128.png",
+      "48": "icon128.png",
+      "128": "icon128.png"
+    },
+    "default_popup": "popup.html",
+    "default_title": "公号小助手"
+  },
+  "permissions": [
+    "declarativeContent",
+    "scripting",
+    "activeTab"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://mp.weixin.qq.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}
