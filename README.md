@@ -6,11 +6,23 @@
 
 ## 功能截图
 
+自动抓取公众号数据，如：文章标题、文章作者、文章简介、文章封面图地址
+
 ![自动抓取公众号数据](./assets/screenshot1.png)
+
+可获取当前公众号的历史文章地址，复制之后，可直接粘贴使用。**需要使用微信的浏览器打开**
 
 ![可一键复制“历史文章”地址](./assets/screenshot2.png)
 
 ![打开“历史文章”地址](./assets/screenshot3.png)
+
+可一键提取文章内容，采集的文章内容在系统剪切板中，可通过 `Ctrl+V` 或者 `Command+V` 直接**粘贴**使用（20240722 新增功能）
+
+![一键提取文章内容](./assets/screenshot4.png)
+
+## 教程
+
+- [（内附视频）这个公众号小扩展，可助你一臂之力！写公众号的小伙伴们，赶紧用起来！](https://mp.weixin.qq.com/s?__biz=MzIzMDE2MzA3NQ==&mid=2649473678&idx=1&sn=717ffcbdc8c6243680e4315b677bd365&chksm=f0a8f562c7df7c7417ac9c6b713ee051cc10d73414390147189fabc3cb0c26b1f8782d247b14&token=2003546410&lang=zh_CN#rd)
 
 ## 使用说明
 

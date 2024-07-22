@@ -106,6 +106,41 @@ function coverData(data) {
     document.getElementById("articleUrlContent").textContent = data.url
 }
 
+async function pickArticleContent() {
+    const articleUrl = document.getElementById("articleUrlContent").textContent
+    if (!articleUrl) {
+        alert("Can't get the article url!")
+        return
+    }
+
+    const url = "https://r.jina.ai/" + articleUrl
+    const response = await fetch(url, {
+        method: "GET",
+        headers: {
+            "Content-Type": "text/plain; charset=utf-8",
+            "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+        }
+    })
+
+    if (!response.ok) {
+        alert("Network response was not ok")
+        return
+    }
+    const text = await response.text()
+    if (!text) {
+        alert("No text to copy")
+        return
+    }
+
+    try {
+        await navigator.clipboard.writeText(text)
+        alert("Copy successfully! You can use Ctrl+v or Command+V to do so!")
+    } catch (err) {
+        console.error("MP-VX-Insight ==> Failed to copy: ", err)
+    }
+
+}
+
 function registerButtonListener(btnID, func) {
     document.getElementById(btnID).addEventListener("click", () => {
         func()
@@ -155,6 +190,7 @@ document.addEventListener("DOMContentLoaded", () => {
     registerButtonListener("openImageUrl", openImageUrl)
     registerButtonListener("downloadCoverImage", downloadCoverImage)
     registerButtonListener("noticeTitle", noticeTitle)
+    registerButtonListener("pickArticleContent", pickArticleContent)
 
     updateCopyrightYear()
     initializeData()
