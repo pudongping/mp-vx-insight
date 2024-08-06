@@ -1,4 +1,5 @@
 console.log("MP-VX-Insight ==> loading popup.js")
+const alertCVMSG = "Copy successfully! You can use Ctrl+v or Command+V to do so!"
 
 function getUriParams(url) {
     const params = {}
@@ -20,6 +21,19 @@ function getUriParams(url) {
     return params
 }
 
+function toggleLoading(button) {
+    button.disabled = !button.disabled // 切换按钮禁用状态
+    button.classList.toggle("loading") // 切换加载状态样式
+
+    const spinner = button.querySelector(".spinner") || document.createElement("div")
+    if (!button.contains(spinner)) {
+        spinner.classList.add("spinner")
+        button.appendChild(spinner)
+    } else {
+        button.removeChild(spinner)
+    }
+}
+
 function copyImageUrl() {
     const imageUrl = document.getElementById("articleCoverImage").src
     if (!imageUrl) {
@@ -28,7 +42,7 @@ function copyImageUrl() {
     }
 
     navigator.clipboard.writeText(imageUrl).then(() => {
-        alert("Copy successfully! You can use Ctrl+v or Command+V to do so!")
+        alert(alertCVMSG)
         console.log("MP-VX-Insight ==> Image URL copied to clipboard: " + imageUrl)
     }).catch(err => {
         console.error("MP-VX-Insight ==> Failed to copy: ", err)
@@ -52,6 +66,9 @@ function downloadCoverImage() {
         return
     }
 
+    const downloadCoverImageBtn = document.getElementById("downloadCoverImage")
+    toggleLoading(downloadCoverImageBtn)
+
     fetch(imageUrl)
         .then(response => response.blob())
         .then(blob => {
@@ -68,6 +85,7 @@ function downloadCoverImage() {
         })
         .catch(err => console.error("MP-VX-Insight ==> downloadCoverImage Error: ", err))
 
+    toggleLoading(downloadCoverImageBtn)
 }
 
 function copyArticleHistoryUrl() {
@@ -82,7 +100,7 @@ function copyArticleHistoryUrl() {
     const historyUrl = `https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=${encodeURIComponent(params.__biz)}`
 
     navigator.clipboard.writeText(historyUrl).then(() => {
-        alert("Copy successfully! You can use Ctrl+v or Command+V to do so!")
+        alert(alertCVMSG)
         console.log("MP-VX-Insight ==> VX Home URL copied to clipboard: " + historyUrl)
     }).catch(err => {
         console.error("MP-VX-Insight ==> Failed to copy: ", err)
@@ -112,31 +130,35 @@ async function pickArticleContent() {
         alert("Can't get the article url!")
         return
     }
+    const pickArticleContentBtn = document.getElementById("pickArticleContent")
+    toggleLoading(pickArticleContentBtn)
 
     const url = "https://r.jina.ai/" + articleUrl
-    const response = await fetch(url, {
-        method: "GET",
-        headers: {
-            "Content-Type": "text/plain; charset=utf-8",
-            "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
-        }
-    })
-
-    if (!response.ok) {
-        alert("Network response was not ok")
-        return
-    }
-    const text = await response.text()
-    if (!text) {
-        alert("No text to copy")
-        return
-    }
-
     try {
+        const response = await fetch(url, {
+            method: "GET",
+            headers: {
+                "Content-Type": "text/plain; charset=utf-8",
+                "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+            }
+        })
+
+        if (!response.ok) {
+            alert("Network response was not ok")
+            return
+        }
+        const text = await response.text()
+        if (!text) {
+            alert("No text to copy")
+            return
+        }
         await navigator.clipboard.writeText(text)
-        alert("Copy successfully! You can use Ctrl+v or Command+V to do so!")
+        alert(alertCVMSG)
     } catch (err) {
         console.error("MP-VX-Insight ==> Failed to copy: ", err)
+        alert("采集出现错误：" + err.message || err)
+    } finally {
+        toggleLoading(pickArticleContentBtn)
     }
 
 }

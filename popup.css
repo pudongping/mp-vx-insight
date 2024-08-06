@@ -59,9 +59,16 @@ button {
     margin-right: 10px;
     border-radius: 4px;
     transition: background-color 0.3s;
+    position: relative; /* 设置为相对定位 */
+    overflow: hidden; /* 防止内容溢出 */
 }
 
+/*有 .loading 样式时*/
 button:hover {
+    background-color: #78838F; /* 悬停效果 */
+}
+/*没有 .loading 样式时*/
+button:hover:not(.loading) {
     background-color: #0056b3;
 }
 
@@ -122,3 +129,26 @@ a {
 .footer #sponsorLink:hover {
     background-color: #993366;
 }
+
+/* loading start */
+.loading {
+    background-color: grey; /* 加载时按钮变灰 */
+    cursor: not-allowed;    /* 鼠标样式变为禁止 */
+}
+.spinner {
+    width: 10px; /* 调整spinner的大小 */
+    height: 10px; /* 调整spinner的大小 */
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-top-color: #ffffff;
+    position: absolute; /* 设置为绝对定位 */
+    left: 50%; /* 水平居中 */
+    top: 50%; /* 垂直居中 */
+    transform: translate(-50%, -50%); /* 进一步细调位置 */
+    animation: spin 0.6s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+/* loading end */
