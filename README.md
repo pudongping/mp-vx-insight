@@ -78,3 +78,13 @@ wget https://github.com/pudongping/mp-vx-insight/archive/refs/heads/master.zip
 
 每次使用此插件的时候，都需要**先**打开微信公众号文章页面，**刷新一下页面** 之后，**然后再**打开此插件页面。  
 否则是**无法获取到公众号文章数据的嗷！**
+
+## Star History
+
+<a href="https://star-history.com/#pudongping/mp-vx-insight&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=pudongping/mp-vx-insight&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=pudongping/mp-vx-insight&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=pudongping/mp-vx-insight&type=Date" />
+ </picture>
+</a>
